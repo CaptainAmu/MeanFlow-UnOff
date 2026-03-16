@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --job-name=mf_train
+#SBATCH --output=joblogs/%j_train_out.txt
+#SBATCH --error=joblogs/%j_train_err.txt
+#SBATCH --time=06:00:00
+#SBATCH --mem=32000
+#SBATCH --gres=gpu:1
+#SBATCH --qos=medium
+#SBATCH --partition=normal
+#SBATCH --exclusive
+
+# MeanFlow-UnOff training (CIFAR-10 or MNIST)
+# Edit config.yml to set dataset (mnist|cifar10) and other hyperparameters.
+# To resume: RESUME=../checkpoints/step_10000.pt sbatch train_meanflow.job
+
+export PYTHONNOUSERSITE=1
+
+PROJECT_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10
+MF_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/MF
+TRAIN_DIR="$MF_ROOT/Train"
+cd "$TRAIN_DIR"
+# Project root for models.dit; Train dir for meanflow, config
+export PYTHONPATH="$PROJECT_ROOT:$TRAIN_DIR:$PYTHONPATH"
+mkdir -p joblogs "$MF_ROOT/images" "$MF_ROOT/checkpoints"
+
+CONFIG="${CONFIG:-config.yml}"
+RESUME="${RESUME:-}"
+PYTHON=/slurm-storage/shucli/.conda/envs/meanflow/bin/python
+
+if [ -n "$RESUME" ]; then
+    srun -u "$PYTHON" train.py --config "$CONFIG" --output_dir "$MF_ROOT" --resume "$RESUME"
+else
+    srun -u "$PYTHON" train.py --config "$CONFIG" --output_dir "$MF_ROOT"
+fi 
+
+echo "Done! Check joblogs/ for output. Checkpoints in $MF_ROOT/checkpoints/."

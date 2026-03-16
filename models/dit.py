@@ -15,6 +15,13 @@ def modulate(x, scale, shift):
 
 class TimestepEmbedder(nn.Module):
     def __init__(self, dim, nfreq=256):
+        '''
+        Args:
+            D = dim: the dimension of the embedding
+            nfreq: the number of frequencies to use
+        Returns:
+            TimeStep Embedder
+        '''
         super().__init__()
         self.mlp = nn.Sequential(nn.Linear(nfreq, dim), nn.SiLU(), nn.Linear(dim, dim))
         self.nfreq = nfreq
@@ -36,6 +43,12 @@ class TimestepEmbedder(nn.Module):
         return embedding
 
     def forward(self, t):
+        '''
+        Args:
+            t: the timestep to embed. (B,)
+        Returns:
+            The embeddings for timestep. (B, D)
+        '''
         t = t*1000
         t_freq = self.timestep_embedding(t, self.nfreq)
         t_emb = self.mlp(t_freq)
@@ -44,22 +57,47 @@ class TimestepEmbedder(nn.Module):
 
 class LabelEmbedder(nn.Module):
     def __init__(self, num_classes, dim):
+        '''
+        Args:
+            num_classes: the number of classes
+            D = dim: the dimension of the embedding
+        Returns:
+            Label Embedder
+        '''
         super().__init__()
         self.embedding = nn.Embedding(num_classes + 1, dim)
         self.num_classes = num_classes
 
     def forward(self, labels):
+        '''
+        Args:
+            labels: the labels to embed. (B,)
+        Returns:
+            The embeddings for labels. (B, D)
+        '''
         embeddings = self.embedding(labels)
         return embeddings
 
 
 class RMSNorm(nn.Module):
-    def __init__(self, dim):
+    def __init__(self, dim, **kwargs):
+        '''
+        Args:
+            D = dim: the dimension of the input
+        Returns:
+            RMSNorm layer.
+        '''
         super().__init__()
         self.scale = dim**0.5
-        self.g = nn.Parameter(torch.ones(1))
+        self.g = nn.Parameter(torch.ones(1)) # Learnable scale factors
 
     def forward(self, x):
+        '''
+        Args:
+            x: the input to normalize. (B, D)
+        Returns:
+            The normalized input. (B, D)
+        '''
         return F.normalize(x, dim=-1) * self.scale * self.g
 
 
@@ -106,6 +144,7 @@ class FinalLayer(nn.Module):
 
 
 class MFDiT(nn.Module):
+
     def __init__(
         self,
         input_size=32,
@@ -119,6 +158,10 @@ class MFDiT(nn.Module):
         num_classes=1000,
     ):
         super().__init__()
+        self.input_size = input_size
+        self.patch_size = patch_size
+        self.dim = dim
+        self.depth = depth
         self.in_channels = in_channels
         self.out_channels = in_channels
         self.patch_size = patch_size
@@ -198,9 +241,13 @@ class MFDiT(nn.Module):
     def forward(self, x, t, r, y=None):
         """
         Forward pass of DiT.
-        x: (N, C, H, W) tensor of spatial inputs (images or latent representations of images)
-        t: (N,) tensor of diffusion timesteps
-        y: (N,) tensor of class labels
+        Args:
+            x: (B, C, H, W) tensor of spatial inputs (images or latent representations of images)
+            t: (B,) tensor of diffusion timesteps
+            r: (B,) tensor of diffusion timesteps
+            y: (B,) tensor of class labels
+        Returns:
+            Predicted Mean Velocity: (B, C, H, W).
         """
         H, W = x.shape[-2:]
 
@@ -222,6 +269,124 @@ class MFDiT(nn.Module):
 
         x = self.final_layer(x, c)                # (N, T, patch_size ** 2 * out_channels)
         x = self.unpatchify(x)                   # (N, out_channels, H, W)
+        return x
+
+
+class FlowMatchDiT(nn.Module):
+    """
+    Flow matching DiT with clean prediction and single time input.
+    Predicts x0_hat(x_t, t, y) - same architecture as MFDiT but only t_embedder (no r).
+    """
+
+    def __init__(
+        self,
+        input_size=32,
+        patch_size=2,
+        in_channels=4,
+        dim=1152,
+        depth=28,
+        num_heads=16,
+        mlp_ratio=4.0,
+        num_register_tokens=4,
+        num_classes=1000,
+    ):
+        super().__init__()
+        self.input_size = input_size
+        self.patch_size = patch_size
+        self.dim = dim
+        self.depth = depth
+        self.in_channels = in_channels
+        self.out_channels = in_channels
+        self.num_heads = num_heads
+        self.num_classes = num_classes
+
+        self.x_embedder = PatchEmbed(input_size, patch_size, in_channels, dim)
+        self.t_embedder = TimestepEmbedder(dim)
+        # No r_embedder - single time only
+
+        self.use_cond = num_classes is not None
+        self.y_embedder = LabelEmbedder(num_classes, dim) if self.use_cond else None
+
+        num_patches = self.x_embedder.num_patches
+        self.pos_embed = nn.Parameter(torch.zeros(1, num_patches, dim), requires_grad=True)
+
+        self.blocks = nn.ModuleList([
+            DiTBlock(dim, num_heads, mlp_ratio) for _ in range(depth)
+        ])
+        self.final_layer = FinalLayer(dim, patch_size, self.out_channels)
+
+        self.initialize_weights()
+
+    def initialize_weights(self):
+        def _basic_init(module):
+            if isinstance(module, nn.Linear):
+                torch.nn.init.xavier_uniform_(module.weight)
+                if module.bias is not None:
+                    nn.init.constant_(module.bias, 0)
+        self.apply(_basic_init)
+
+        pos_embed = get_2d_sincos_pos_embed(self.pos_embed.shape[-1], int(self.x_embedder.num_patches ** 0.5))
+        self.pos_embed.data.copy_(torch.from_numpy(pos_embed).float().unsqueeze(0))
+
+        w = self.x_embedder.proj.weight.data
+        nn.init.xavier_uniform_(w.view([w.shape[0], -1]))
+        nn.init.constant_(self.x_embedder.proj.bias, 0)
+
+        if self.y_embedder is not None:
+            nn.init.normal_(self.y_embedder.embedding.weight, std=0.02)
+
+        nn.init.normal_(self.t_embedder.mlp[0].weight, std=0.02)
+        nn.init.normal_(self.t_embedder.mlp[2].weight, std=0.02)
+
+        for block in self.blocks:
+            nn.init.constant_(block.adaLN_modulation[-1].weight, 0)
+            nn.init.constant_(block.adaLN_modulation[-1].bias, 0)
+
+        nn.init.constant_(self.final_layer.adaLN_modulation[-1].weight, 0)
+        nn.init.constant_(self.final_layer.adaLN_modulation[-1].bias, 0)
+        nn.init.constant_(self.final_layer.linear.weight, 0)
+        nn.init.constant_(self.final_layer.linear.bias, 0)
+
+    def unpatchify(self, x):
+        c = self.out_channels
+        p = self.x_embedder.patch_size[0]
+        h = w = int(x.shape[1] ** 0.5)
+        assert h * w == x.shape[1]
+        x = x.reshape(shape=(x.shape[0], h, w, p, p, c))
+        x = torch.einsum('nhwpqc->nchpwq', x)
+        imgs = x.reshape(shape=(x.shape[0], c, h * p, h * p))
+        return imgs
+
+    def forward(self, x, t, y=None):
+        """
+        Predict clean image x0_hat from (x_t, t, y).
+        Args:
+            x: (B, C, H, W) noisy input
+            t: (B,) timestep
+            y: (B,) class labels
+        Returns:
+            x0_hat: (B, C, H, W) predicted clean image
+        """
+        x = self.x_embedder(x) + self.pos_embed
+        c = self.t_embedder(t)
+        if self.use_cond:
+            y_emb = self.y_embedder(y)
+            c = c + y_emb
+
+        for block in self.blocks:
+            x = block(x, c)
+        x = self.final_layer(x, c)
+        x = self.unpatchify(x)
+        return x
+
+    def forward_bottleneck(self, x, t, y=None):
+        """Return hidden state before final_layer. Shape (B, N, D)."""
+        x = self.x_embedder(x) + self.pos_embed
+        c = self.t_embedder(t)
+        if self.use_cond:
+            c = c + self.y_embedder(y)
+        for block in self.blocks:
+            x = block(x, c)
         return x
 
 

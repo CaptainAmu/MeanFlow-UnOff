@@ -1,0 +1,7 @@
+Starting DMD run in: /slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD/run_2
+Config snapshot saved to: /slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD/run_2/train_dmd_student.yml
+]11;?[cUsing flow_schedule: Reflow
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mrun_2[0m at: [34mhttps://wandb.ai/shucheng_li-university-of-oxford/MF_DMD_CIFAR10/runs/ezzjx1zl[0m
+[1;34mwandb[0m: Find logs at: [1;35mrun_2/wandb/run-20260316_191831-ezzjx1zl/logs[0m
+Done! Checkpoints in /slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD/run_2/checkpoints/, images in /slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD/run_2/images/.

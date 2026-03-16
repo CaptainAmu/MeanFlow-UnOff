@@ -1,0 +1,5 @@
+[Wed Mar 11 14:46:14 2026] step=1 L_dmd=0.000067 L_gan=0.724009
+[Wed Mar 11 14:46:14 2026] step=2 L_dmd=0.000098 L_gan=0.653209
+[Wed Mar 11 14:46:15 2026] step=3 L_dmd=0.000066 L_gan=0.700976
+[Wed Mar 11 14:46:15 2026] step=4 L_dmd=0.000048 L_gan=0.784884
+[Wed Mar 11 14:46:15 2026] step=5 L_dmd=0.000079 L_gan=0.856262

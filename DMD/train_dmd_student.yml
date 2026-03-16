@@ -1,0 +1,46 @@
+# DMD2 student distillation
+
+# WandB
+use_wandb: true
+wandb_project: MF_DMD_CIFAR10
+wandb_entity: ""
+wandb_run_name: ""
+wandb_log_step: 10
+
+
+# Teacher checkpoint path (can also override via --teacher or TEACHER env)
+teacher_path: ../FM/checkpoints/step_100000.pt
+
+# Must match teacher
+flow_schedule: Reflow
+
+# Model (FlowMatchDiT - same as teacher)
+input_size: 32
+patch_size: 2
+dim: 384
+depth: 12
+num_heads: 6
+num_classes: 10
+in_channels: 3
+
+# DMD2 (paper: 1 gen step, 5 fake score steps per iteration)
+sigma_data: 0.5
+lambda_gan: 5e-4
+n_disc_updates: 2 # discriminator update steps per iteration (per 1 generator update)
+n_score_updates: 5 # fake score model update steps per iteration (per 1 generator update)
+
+lambda_denoise: 0.0  # unused when using separate fake score model
+
+# Training
+batch_size: 32
+n_steps: 50000
+lr_gen: 2.0e-5 # Learning rate of generator G_theta
+lr_disc: 2.0e-5 # Learning rate of discriminator D
+lr_score: 2.0e-5 # Learning rate of student score function μ_fake
+weight_decay: 0.01
+log_step: 10
+sample_step: 10
+ckpt_step: 5000
+num_workers: 4
+
+

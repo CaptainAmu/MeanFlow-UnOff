@@ -1,0 +1,5 @@
+Saved paired 1-step vs Euler to Inference/MF_reproduce/paired_1step_vs_euler.png
+Saved paired 1-step vs Heun to Inference/MF_reproduce/paired_1step_vs_heun.png
+Saved paired Euler vs Heun to Inference/MF_reproduce/paired_euler_vs_heun.png
+Saved all grids to Inference/MF_reproduce/
+Done! Check Inference/MF_reproduce/ for paired 1-step vs Euler/Heun images.

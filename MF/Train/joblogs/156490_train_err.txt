@@ -1,0 +1,25 @@
+/slurm-storage/shucli/.conda/envs/meanflow/lib/python3.11/site-packages/torch/utils/data/dataloader.py:424: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  self.check_worker_number_rationality()
+
+  0%|          | 0/200000 [00:00<?, ?it/s]
+Training:   0%|          | 0/200000 [00:00<?, ?it/s]/slurm-storage/shucli/.conda/envs/meanflow/lib/python3.11/site-packages/torch/utils/data/dataloader.py:432: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  self.check_worker_number_rationality()
+
+Training:   0%|          | 0/200000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/mnt/data/slurm-storage/shucli/PROJECT_FOLDER/MeanFlow-UnOff/train.py", line 95, in <module>
+    loss, mse_val = meanflow.loss(model, x, c)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/slurm-storage/shucli/PROJECT_FOLDER/MeanFlow-UnOff/meanflow.py", line 138, in loss
+    x = self.normer.norm(x)
+        ^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/slurm-storage/shucli/PROJECT_FOLDER/MeanFlow-UnOff/meanflow.py", line 30, in norm
+    return x * 2 - 1
+           ~~^~~
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+srun: error: noether: task 0: Exited with exit code 1

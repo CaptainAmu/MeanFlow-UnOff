@@ -1,0 +1,46 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --job-name=mf_reproduce
+#SBATCH --output=joblogs/%j_reproduce_out.txt
+#SBATCH --error=joblogs/%j_reproduce_err.txt
+#SBATCH --time=00:30:00
+#SBATCH --mem=16000
+#SBATCH --gres=gpu:1
+#SBATCH --qos=short
+#SBATCH --partition=normal
+
+# MeanFlow sampling reproduction: compare 1-step vs Euler/Heun multi-step.
+# Outputs paired images to MF_reproduce/
+#
+# Usage:
+#   sbatch mf_reproduce.job
+#   CKPT=checkpoints/step_100000.pt sbatch Inference/mf_reproduce.job
+#   CKPT=checkpoints/step_100000.pt N_PER_CLASS=4 ODE_STEPS=20 sbatch mf_reproduce.job
+
+export PYTHONNOUSERSITE=1
+
+PROJECT_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10
+MF_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/MF
+cd "$MF_ROOT"
+# Project root for models; Train for meanflow (scripts add these via sys.path)
+export PYTHONPATH="$PROJECT_ROOT:$MF_ROOT/Train:$PYTHONPATH"
+mkdir -p Inference/joblogs Inference/MF_reproduce
+
+CKPT="${CKPT:-checkpoints/step_65000.pt}"
+OUTPUT_DIR="${OUTPUT_DIR:-Inference/MF_reproduce}"
+N_PER_CLASS="${N_PER_CLASS:-2}"
+ODE_STEPS="${ODE_STEPS:-50}"
+DATASET="${DATASET:-cifar10}"
+SEED="${SEED:-42}"
+
+PYTHON=/slurm-storage/shucli/.conda/envs/meanflow/bin/python
+
+srun -u "$PYTHON" Inference/mf_reproduce.py \
+    --ckpt "$CKPT" \
+    --output_dir "$OUTPUT_DIR" \
+    --n_per_class "$N_PER_CLASS" \
+    --ode_steps "$ODE_STEPS" \
+    --dataset "$DATASET" \
+    --seed "$SEED"
+
+echo "Done! Check $OUTPUT_DIR/ for paired 1-step vs Euler/Heun images."

@@ -1,0 +1,63 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --job-name=dmd_student
+#SBATCH --output=joblogs/%j_train_out.txt
+#SBATCH --error=joblogs/%j_train_err.txt
+#SBATCH --time=24:00:00
+#SBATCH --mem=32000
+#SBATCH --gres=gpu:1
+#SBATCH --qos=medium
+#SBATCH --partition=normal
+
+# DMD2 student distillation from FM teacher
+# Run teacher first: sbatch ../FM/train_teacher.job
+# Then: TEACHER=../FM/checkpoints/step_200000.pt sbatch train_dmd_student.job
+
+export PYTHONNOUSERSITE=1
+
+PROJECT_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10
+DMD_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD
+cd "$DMD_ROOT"
+export PYTHONPATH="$PROJECT_ROOT:$DMD_ROOT:$PYTHONPATH"
+mkdir -p joblogs
+
+CONFIG="${CONFIG:-train_dmd_student.yml}"
+TEACHER="${TEACHER:-}"
+FLOW_SCHEDULE="${FLOW_SCHEDULE:-}"
+PYTHON=/slurm-storage/shucli/.conda/envs/meanflow/bin/python
+
+# TEACHER via env or teacher_path in yml. FLOW_SCHEDULE overrides (default: from checkpoint).
+
+if [[ "$CONFIG" = /* ]]; then
+    CONFIG_SRC="$CONFIG"
+else
+    CONFIG_SRC="$DMD_ROOT/$CONFIG"
+fi
+if [ ! -f "$CONFIG_SRC" ]; then
+    echo "Error: config file not found at $CONFIG_SRC"
+    exit 1
+fi
+
+shopt -s nullglob
+RUN_DIRS=("$DMD_ROOT"/run_*)
+RUN_ID=$(( ${#RUN_DIRS[@]} + 1 ))
+RUN_DIR="$DMD_ROOT/run_${RUN_ID}"
+while [ -e "$RUN_DIR" ]; do
+    RUN_ID=$((RUN_ID + 1))
+    RUN_DIR="$DMD_ROOT/run_${RUN_ID}"
+done
+shopt -u nullglob
+
+mkdir -p "$RUN_DIR/images" "$RUN_DIR/checkpoints"
+cp "$CONFIG_SRC" "$RUN_DIR/train_dmd_student.yml"
+
+OUTPUT_DIR="$RUN_DIR"
+echo "Starting DMD run in: $RUN_DIR"
+echo "Config snapshot saved to: $RUN_DIR/train_dmd_student.yml"
+
+EXTRA=""
+[ -n "$TEACHER" ] && EXTRA="$EXTRA --teacher $TEACHER"
+[ -n "$FLOW_SCHEDULE" ] && EXTRA="$EXTRA --flow_schedule $FLOW_SCHEDULE"
+srun -u "$PYTHON" train_dmd_student.py --config "$CONFIG_SRC" --output_dir "$OUTPUT_DIR" $EXTRA
+
+echo "Done! Checkpoints in $RUN_DIR/checkpoints/, images in $RUN_DIR/images/."

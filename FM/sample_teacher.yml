@@ -1,0 +1,15 @@
+# FM teacher sampling config
+# Edit these values, then: sbatch sample_teacher.job
+
+# Checkpoint path (relative to FM root or absolute)
+ckpt_path: checkpoints/step_100000.pt
+
+# Euler steps for ODE integration (more steps = higher quality, slower)
+num_steps: 16
+
+
+# Samples per class
+n_per_class: 1
+
+# Random seed
+seed: 42

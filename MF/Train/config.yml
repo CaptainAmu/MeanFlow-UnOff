@@ -1,0 +1,33 @@
+# Dataset: mnist | cifar10 (dictates in_channels, channels, n_steps, root, transforms)
+dataset: cifar10
+
+# Model (MFDiT) - in_channels/channels derived from dataset
+input_size: 32
+patch_size: 2
+dim: 384
+depth: 12
+num_heads: 6
+num_classes: 10
+
+# MeanFlow - channels derived from dataset
+image_size: 32
+flow_ratio: 0.50
+time_dist: [lognorm, -0.4, 1.0]
+cfg_ratio: 0.10
+cfg_scale: 2.0
+cfg_uncond: u
+normalizer: [minmax, null, null]
+
+# Training
+batch_size: 32
+n_steps: 200000
+lr: 1.0e-4
+weight_decay: 0.0
+log_step: 500
+sample_step: 500
+ckpt_step: 5000
+num_workers: 4
+
+# Visualization (Euler steps and method for MeanFlow sampling)
+num_steps: 5
+sample_use: u  # u or v; u for u(z, t, r) and v for v(z, t, t) and Euler.

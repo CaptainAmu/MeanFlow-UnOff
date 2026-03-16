@@ -1,0 +1,29 @@
+# Flow matching teacher - clean prediction x0_hat(x_t, t, y)
+dataset: cifar10
+
+# Flow schedule: Reflow | Trig
+flow_schedule: Reflow
+
+# Model (FlowMatchDiT)
+input_size: 32
+patch_size: 2
+dim: 384
+depth: 12
+num_heads: 6
+num_classes: 10
+
+image_size: 32
+normalizer: [minmax, null, null]
+
+# Training
+batch_size: 32
+n_steps: 100000
+lr: 1.0e-4
+weight_decay: 0.0
+log_step: 500
+sample_step: 500
+ckpt_step: 5000
+num_workers: 4
+
+# Visualization (Euler steps for FM Sampling)
+num_steps: 2
