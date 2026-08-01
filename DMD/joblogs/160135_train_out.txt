@@ -1,3 +1,0 @@
-Starting DMD run in: /slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD/run_1
-Config snapshot saved to: /slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD/run_1/config_dmd.yml
-]11;?[c

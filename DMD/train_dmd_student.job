@@ -11,7 +11,7 @@
 
 # DMD2 student distillation from FM teacher
 # Run teacher first: sbatch ../FM/train_teacher.job
-# Then: TEACHER=../FM/checkpoints/step_200000.pt sbatch train_dmd_student.job
+# Then: TEACHER=../FM_Trained_Models/checkpoints/step_100000.pt sbatch train_dmd_student.job
 
 export PYTHONNOUSERSITE=1
 

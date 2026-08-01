@@ -8,8 +8,8 @@ wandb_run_name: ""
 wandb_log_step: 10
 
 
-# Teacher checkpoint path (can also override via --teacher or TEACHER env)
-teacher_path: ../FM/checkpoints/step_100000.pt
+# Teacher checkpoint path
+teacher_path: ../FM_Trained_Models/step_100000.pt
 
 # Must match teacher
 flow_schedule: Reflow
@@ -25,7 +25,7 @@ in_channels: 3
 
 # DMD2 (paper: 1 gen step, 5 fake score steps per iteration)
 sigma_data: 0.5
-lambda_gan: 5e-4
+lambda_gan: 3e-3
 n_disc_updates: 2 # discriminator update steps per iteration (per 1 generator update)
 n_score_updates: 5 # fake score model update steps per iteration (per 1 generator update)
 

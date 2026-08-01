@@ -1,9 +1,14 @@
 # datasets
 dataset/
-images/
+MF_Trained_Models/
+FM_Trained_Models/
 
 # model checkpoints
 checkpoints/
+
+# sample images
+images/
+FM/train_images/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,0 +1,51 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --job-name=testFID
+#SBATCH --output=joblogs/%j_fid_out.txt
+#SBATCH --error=joblogs/%j_fid_err.txt
+#SBATCH --time=02:00:00
+#SBATCH --mem=16000
+#SBATCH --gres=gpu:1
+#SBATCH --qos=short
+#SBATCH --partition=normal
+
+# Compute FID for FM and MF checkpoints vs CIFAR-10
+# Uses dataset from dataset/cifar (CIFAR-10)
+# Scans FM_Trained_Models and MF_Trained_Models by default, or use checkpoints in testFID.yml
+#
+# BEFORE sbatch: pip install scipy  (in your conda env, e.g. meanflow)
+#
+# Usage:
+#   sbatch testFID.job
+#   CONFIG=my_fid.yml sbatch testFID.job
+#   CKPT=../FM/checkpoints/step_100000.pt MODEL_TYPE=FM sbatch testFID.job
+
+export PYTHONNOUSERSITE=1
+export PYTHONUNBUFFERED=1
+
+PROJECT_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10
+TESTFID_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/testFID
+cd "$TESTFID_ROOT"
+export PYTHONPATH="$PROJECT_ROOT:$PROJECT_ROOT/MF/Train:$PYTHONPATH"
+mkdir -p joblogs
+
+CONFIG="${CONFIG:-testFID.yml}"
+CKPT="${CKPT:-}"
+MODEL_TYPE="${MODEL_TYPE:-}"
+
+PYTHON=/slurm-storage/shucli/.conda/envs/meanflow/bin/python
+
+if [ -n "$CKPT" ]; then
+    CMD="$PYTHON testFID.py --config $CONFIG --ckpt $CKPT"
+    [ -n "$MODEL_TYPE" ] && CMD="$CMD --model_type $MODEL_TYPE"
+else
+    CMD="$PYTHON testFID.py --config $CONFIG"
+fi
+
+echo "Running: $CMD" && echo ""
+srun -u $CMD
+EXIT=$?
+echo ""
+echo "Exit code: $EXIT"
+echo "Done. FID results in fid_out.txt (job output)"
+exit $EXIT

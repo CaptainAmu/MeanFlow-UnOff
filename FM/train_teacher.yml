@@ -4,6 +4,10 @@ dataset: cifar10
 # Flow schedule: Reflow | Trig
 flow_schedule: Reflow
 
+# Time sampling: [uniform] or [lognorm, mu, sigma] (logit-normal, like MeanFlow)
+# uniform: t~U(0,1). lognorm: t=sigmoid(N(mu,sigma)), e.g. [lognorm, -0.4, 1.0]
+time_dist: [lognorm, -0.4, 1.0]
+
 # Model (FlowMatchDiT)
 input_size: 32
 patch_size: 2
@@ -26,4 +30,4 @@ ckpt_step: 5000
 num_workers: 4
 
 # Visualization (Euler steps for FM Sampling)
-num_steps: 2
+euler_steps: 16

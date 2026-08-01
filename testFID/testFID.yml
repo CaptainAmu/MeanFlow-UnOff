@@ -1,0 +1,30 @@
+# FID evaluation config for FM and MF checkpoints
+# Before sbatch: pip install scipy  (in conda env meanflow)
+
+# CIFAR-10 dataset (relative to project root, or absolute path)
+dataset_root: dataset/cifar
+
+# Number of samples for FID (50000 = full CIFAR-10 train size)
+num_samples: 50000
+
+# Batch size for generation and feature extraction
+batch_size: 64
+
+# FM: Euler ODE steps for sampling
+euler_steps: 20
+
+# MF: ODE integration steps for sampling
+mf_sample_steps: 5
+
+# FID results are printed to stdout (appear in joblogs/*_fid_out.txt)
+
+# Checkpoints to evaluate (optional - if empty, scans FM_Trained_Models and MF_Trained_Models)
+checkpoints: []
+# Manual format (path relative to testFID/, model_type: FM|MF, name optional):
+# checkpoints:
+#   - path: ../FM_Trained_Models/step_100000.pt
+#     model_type: FM
+#     name: fm_step100k
+#   - path: ../MF_Trained_Models/step_200000.pt
+#     model_type: MF
+#     name: mf_step200k

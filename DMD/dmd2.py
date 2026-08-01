@@ -11,6 +11,10 @@ from typing import Literal
 from utils.flow_schedule import interpolate, get_t_end, get_denoising_weight
 
 
+# DMD2_OT-style weight: C=channels, S=128 (cifar10_distill)
+IMG_CH, WEIGHT_S = 3, 128
+
+
 def distribution_matching_loss(
     x0: torch.Tensor,
     pred_real: torch.Tensor,
@@ -21,14 +25,17 @@ def distribution_matching_loss(
     """
     DMD2 distribution matching gradient injection (DMD paper formula).
     p_real = x0 - pred_real, p_fake = x0 - pred_fake
-    grad = α_t * (p_real - p_fake) / (mean|p_real| + eps)
+    Aligned with DMD2_OT: weight = (C*S) / (||p_real||_1 + eps), clamped to max=100.
+    grad = α_t * (p_real - p_fake) * weight
     Returns (loss, grad_norm) for monitoring.
     """
     with torch.no_grad():
         p_real = x0 - pred_real
         p_fake = x0 - pred_fake
-        weight_factor = torch.abs(p_real).mean(dim=[1, 2, 3], keepdim=True) + eps
-        grad = alpha_t * (p_real - p_fake) / weight_factor
+        denom = torch.abs(p_real).sum(dim=[1, 2, 3], keepdim=True) + eps
+        weight = (IMG_CH * WEIGHT_S) / denom
+        weight = torch.clamp(weight, max=100.0)
+        grad = alpha_t * (p_real - p_fake) * weight
         grad = torch.nan_to_num(grad)
         grad_norm = float(torch.norm(grad).item())
     loss = 0.5 * F.mse_loss(x0, (x0 - grad).detach(), reduction="mean")

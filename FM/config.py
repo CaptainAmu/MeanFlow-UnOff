@@ -34,6 +34,7 @@ DEFAULTS = {
     "num_classes": 10,
     "image_size": 32,
     "flow_schedule": "Reflow",
+    "time_dist": ["uniform"],
     "normalizer": ["minmax", None, None],
     "batch_size": 32,
     "n_steps": 200000,
@@ -95,6 +96,7 @@ class Config:
     channels: int
     image_size: int
     flow_schedule: str
+    time_dist: List[Any]
     normalizer: List[Any]
     root: str
     transform: str

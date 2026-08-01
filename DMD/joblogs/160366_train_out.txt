@@ -1,3 +1,0 @@
-Starting DMD run in: /slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD/run_1
-Config snapshot saved to: /slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/DMD/run_1/train_dmd_student.yml
-]11;?[cUsing flow_schedule: Reflow

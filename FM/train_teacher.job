@@ -10,7 +10,8 @@
 #SBATCH --partition=normal
 
 # Flow matching teacher (clean prediction, Reflow/Trig)
-# Edit train_teacher.yml for flow_schedule (Reflow|Trig) and dataset.
+# Edit train_teacher.yml: flow_schedule (Reflow|Trig), time_dist ([uniform] or [lognorm, mu, sigma]).
+# For separate model dir: OUTPUT_DIR=../FM_lognorm sbatch train_teacher.job
 # To resume: RESUME=checkpoints/step_10000.pt sbatch train_teacher.job
 
 export PYTHONNOUSERSITE=1
@@ -19,16 +20,19 @@ PROJECT_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10
 FM_ROOT=/slurm-storage/shucli/PROJECT_FOLDER/MF_DMD_CIFAR10/FM
 cd "$FM_ROOT"
 export PYTHONPATH="$PROJECT_ROOT:$FM_ROOT:$PYTHONPATH"
-mkdir -p joblogs "$FM_ROOT/images" "$FM_ROOT/checkpoints"
+mkdir -p joblogs
 
 CONFIG="${CONFIG:-train_teacher.yml}"
 RESUME="${RESUME:-}"
+OUTPUT_DIR="${OUTPUT_DIR:-$FM_ROOT}"
+mkdir -p "$OUTPUT_DIR/images" "$OUTPUT_DIR/checkpoints"
+
 PYTHON=/slurm-storage/shucli/.conda/envs/meanflow/bin/python
 
 if [ -n "$RESUME" ]; then
-    srun -u "$PYTHON" train_teacher.py --config "$CONFIG" --output_dir "$FM_ROOT" --resume "$RESUME"
+    srun -u "$PYTHON" train_teacher.py --config "$CONFIG" --output_dir "$OUTPUT_DIR" --resume "$RESUME"
 else
-    srun -u "$PYTHON" train_teacher.py --config "$CONFIG" --output_dir "$FM_ROOT"
+    srun -u "$PYTHON" train_teacher.py --config "$CONFIG" --output_dir "$OUTPUT_DIR"
 fi
 
-echo "Done! Checkpoints in $FM_ROOT/checkpoints/."
+echo "Done! Checkpoints in $OUTPUT_DIR/checkpoints/."

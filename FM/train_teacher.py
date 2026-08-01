@@ -89,13 +89,33 @@ def get_dataset(cfg):
     return dataset, cycle(train_dataloader)
 
 
-def sample_t(batch_size, device, schedule):
-    """Sample t: Reflow [0,1], Trig [0, pi/2]."""
-    if schedule == "Reflow":
-        return torch.rand(batch_size, device=device)
-    elif schedule == "Trig":
-        return torch.rand(batch_size, device=device) * (np.pi / 2)
-    raise ValueError(f"Unknown schedule: {schedule}")
+def sample_t(batch_size, device, schedule, time_dist=None):
+    """
+    Sample t for flow matching.
+    time_dist: ["uniform"] or ["lognorm", mu, sigma].
+      - uniform: t ~ U(0, 1) for Reflow, t ~ U(0, pi/2) for Trig
+      - lognorm: t = sigmoid(N(mu, sigma)), then scale by schedule range
+    """
+    time_dist = time_dist or ["uniform"]
+    if time_dist[0] == "uniform":
+        if schedule == "Reflow":
+            t = torch.rand(batch_size, device=device)
+        elif schedule == "Trig":
+            t = torch.rand(batch_size, device=device) * (np.pi / 2)
+        else:
+            raise ValueError(f"Unknown schedule: {schedule}")
+    elif time_dist[0] == "lognorm":
+        mu, sigma = float(time_dist[1]), float(time_dist[2])
+        normal_samples = np.random.randn(batch_size).astype(np.float32) * sigma + mu
+        t_np = 1.0 / (1.0 + np.exp(-normal_samples))
+        t = torch.tensor(t_np, device=device, dtype=torch.float32)
+        if schedule == "Trig":
+            t = t * (np.pi / 2)
+        elif schedule != "Reflow":
+            raise ValueError(f"Unknown schedule: {schedule}")
+    else:
+        raise ValueError(f"Unknown time_dist: {time_dist[0]}, use 'uniform' or 'lognorm'")
+    return t
 
 
 @torch.no_grad()
@@ -189,7 +209,7 @@ if __name__ == "__main__":
 
             x = normer.norm(x)
             eps = torch.randn_like(x, device=x.device)
-            t = sample_t(x.shape[0], x.device, schedule)
+            t = sample_t(x.shape[0], x.device, schedule, getattr(cfg, "time_dist", None))
 
             x_t = interpolate(x, eps, t, schedule)
             x0_hat = model(x_t, t, c)
@@ -234,6 +254,7 @@ if __name__ == "__main__":
                     {
                         "model_config": cfg.model_config,
                         "flow_schedule": schedule,
+                        "time_dist": getattr(cfg, "time_dist", ["uniform"]),
                         "state_dict": model_module.state_dict(),
                         "optimizer_state_dict": optimizer.state_dict(),
                         "global_step": global_step,
@@ -250,6 +271,7 @@ if __name__ == "__main__":
             {
                 "model_config": cfg.model_config,
                 "flow_schedule": schedule,
+                "time_dist": getattr(cfg, "time_dist", ["uniform"]),
                 "state_dict": model_module.state_dict(),
                 "optimizer_state_dict": optimizer.state_dict(),
                 "global_step": global_step,

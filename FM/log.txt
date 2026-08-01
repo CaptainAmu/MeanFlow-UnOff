@@ -428,3 +428,403 @@ Fri Mar 13 16:42:08 2026
 Global Step: 99500    Loss: 0.056070    LR: 0.000100
 Fri Mar 13 16:43:17 2026
 Global Step: 100000    Loss: 0.054835    LR: 0.000100
+Mon Mar 16 21:31:36 2026
+Global Step: 500    Loss: 0.060174    LR: 0.000100
+Mon Mar 16 21:32:44 2026
+Global Step: 1000    Loss: 0.038187    LR: 0.000100
+Mon Mar 16 21:33:52 2026
+Global Step: 1500    Loss: 0.036346    LR: 0.000100
+Mon Mar 16 21:35:01 2026
+Global Step: 2000    Loss: 0.035281    LR: 0.000100
+Mon Mar 16 21:36:10 2026
+Global Step: 2500    Loss: 0.034463    LR: 0.000100
+Mon Mar 16 21:37:19 2026
+Global Step: 3000    Loss: 0.033621    LR: 0.000100
+Mon Mar 16 21:38:28 2026
+Global Step: 3500    Loss: 0.033519    LR: 0.000100
+Mon Mar 16 21:39:37 2026
+Global Step: 4000    Loss: 0.032918    LR: 0.000100
+Mon Mar 16 21:40:46 2026
+Global Step: 4500    Loss: 0.033128    LR: 0.000100
+Mon Mar 16 21:41:55 2026
+Global Step: 5000    Loss: 0.032323    LR: 0.000100
+Mon Mar 16 21:43:08 2026
+Global Step: 5500    Loss: 0.032787    LR: 0.000100
+Mon Mar 16 21:44:17 2026
+Global Step: 6000    Loss: 0.032190    LR: 0.000100
+Mon Mar 16 21:45:26 2026
+Global Step: 6500    Loss: 0.032071    LR: 0.000100
+Mon Mar 16 21:46:35 2026
+Global Step: 7000    Loss: 0.032374    LR: 0.000100
+Mon Mar 16 21:47:44 2026
+Global Step: 7500    Loss: 0.031946    LR: 0.000100
+Mon Mar 16 21:48:53 2026
+Global Step: 8000    Loss: 0.032332    LR: 0.000100
+Mon Mar 16 21:50:02 2026
+Global Step: 8500    Loss: 0.031823    LR: 0.000100
+Mon Mar 16 21:51:10 2026
+Global Step: 9000    Loss: 0.032035    LR: 0.000100
+Mon Mar 16 21:52:20 2026
+Global Step: 9500    Loss: 0.031572    LR: 0.000100
+Mon Mar 16 21:53:29 2026
+Global Step: 10000    Loss: 0.031775    LR: 0.000100
+Mon Mar 16 21:54:42 2026
+Global Step: 10500    Loss: 0.031671    LR: 0.000100
+Mon Mar 16 21:55:51 2026
+Global Step: 11000    Loss: 0.031260    LR: 0.000100
+Mon Mar 16 21:56:59 2026
+Global Step: 11500    Loss: 0.031278    LR: 0.000100
+Mon Mar 16 21:58:09 2026
+Global Step: 12000    Loss: 0.031382    LR: 0.000100
+Mon Mar 16 21:59:17 2026
+Global Step: 12500    Loss: 0.031416    LR: 0.000100
+Mon Mar 16 22:00:27 2026
+Global Step: 13000    Loss: 0.031065    LR: 0.000100
+Mon Mar 16 22:01:35 2026
+Global Step: 13500    Loss: 0.031275    LR: 0.000100
+Mon Mar 16 22:02:44 2026
+Global Step: 14000    Loss: 0.031288    LR: 0.000100
+Mon Mar 16 22:03:54 2026
+Global Step: 14500    Loss: 0.031307    LR: 0.000100
+Mon Mar 16 22:05:02 2026
+Global Step: 15000    Loss: 0.031027    LR: 0.000100
+Mon Mar 16 22:06:15 2026
+Global Step: 15500    Loss: 0.030679    LR: 0.000100
+Mon Mar 16 22:07:24 2026
+Global Step: 16000    Loss: 0.031376    LR: 0.000100
+Mon Mar 16 22:08:33 2026
+Global Step: 16500    Loss: 0.031153    LR: 0.000100
+Mon Mar 16 22:09:42 2026
+Global Step: 17000    Loss: 0.030974    LR: 0.000100
+Mon Mar 16 22:10:50 2026
+Global Step: 17500    Loss: 0.031164    LR: 0.000100
+Mon Mar 16 22:11:59 2026
+Global Step: 18000    Loss: 0.030559    LR: 0.000100
+Mon Mar 16 22:13:08 2026
+Global Step: 18500    Loss: 0.031381    LR: 0.000100
+Mon Mar 16 22:14:17 2026
+Global Step: 19000    Loss: 0.030890    LR: 0.000100
+Mon Mar 16 22:15:26 2026
+Global Step: 19500    Loss: 0.030930    LR: 0.000100
+Mon Mar 16 22:16:35 2026
+Global Step: 20000    Loss: 0.030762    LR: 0.000100
+Mon Mar 16 22:17:48 2026
+Global Step: 20500    Loss: 0.031165    LR: 0.000100
+Mon Mar 16 22:18:57 2026
+Global Step: 21000    Loss: 0.030524    LR: 0.000100
+Mon Mar 16 22:20:06 2026
+Global Step: 21500    Loss: 0.031129    LR: 0.000100
+Mon Mar 16 22:21:14 2026
+Global Step: 22000    Loss: 0.030549    LR: 0.000100
+Mon Mar 16 22:22:22 2026
+Global Step: 22500    Loss: 0.030432    LR: 0.000100
+Mon Mar 16 22:23:31 2026
+Global Step: 23000    Loss: 0.030859    LR: 0.000100
+Mon Mar 16 22:24:41 2026
+Global Step: 23500    Loss: 0.030746    LR: 0.000100
+Mon Mar 16 22:25:49 2026
+Global Step: 24000    Loss: 0.030146    LR: 0.000100
+Mon Mar 16 22:26:59 2026
+Global Step: 24500    Loss: 0.030649    LR: 0.000100
+Mon Mar 16 22:28:08 2026
+Global Step: 25000    Loss: 0.030572    LR: 0.000100
+Mon Mar 16 22:29:20 2026
+Global Step: 25500    Loss: 0.030917    LR: 0.000100
+Mon Mar 16 22:30:30 2026
+Global Step: 26000    Loss: 0.030498    LR: 0.000100
+Mon Mar 16 22:31:38 2026
+Global Step: 26500    Loss: 0.030980    LR: 0.000100
+Mon Mar 16 22:32:47 2026
+Global Step: 27000    Loss: 0.030939    LR: 0.000100
+Mon Mar 16 22:33:56 2026
+Global Step: 27500    Loss: 0.030798    LR: 0.000100
+Mon Mar 16 22:35:05 2026
+Global Step: 28000    Loss: 0.030711    LR: 0.000100
+Mon Mar 16 22:36:15 2026
+Global Step: 28500    Loss: 0.030080    LR: 0.000100
+Mon Mar 16 22:37:23 2026
+Global Step: 29000    Loss: 0.030823    LR: 0.000100
+Mon Mar 16 22:38:31 2026
+Global Step: 29500    Loss: 0.030603    LR: 0.000100
+Mon Mar 16 22:39:40 2026
+Global Step: 30000    Loss: 0.029986    LR: 0.000100
+Mon Mar 16 22:40:52 2026
+Global Step: 30500    Loss: 0.030541    LR: 0.000100
+Mon Mar 16 22:42:02 2026
+Global Step: 31000    Loss: 0.030457    LR: 0.000100
+Mon Mar 16 22:43:11 2026
+Global Step: 31500    Loss: 0.030273    LR: 0.000100
+Mon Mar 16 22:44:19 2026
+Global Step: 32000    Loss: 0.029780    LR: 0.000100
+Mon Mar 16 22:45:29 2026
+Global Step: 32500    Loss: 0.030563    LR: 0.000100
+Mon Mar 16 22:46:37 2026
+Global Step: 33000    Loss: 0.030326    LR: 0.000100
+Mon Mar 16 22:47:46 2026
+Global Step: 33500    Loss: 0.030313    LR: 0.000100
+Mon Mar 16 22:48:55 2026
+Global Step: 34000    Loss: 0.030370    LR: 0.000100
+Mon Mar 16 22:50:04 2026
+Global Step: 34500    Loss: 0.030376    LR: 0.000100
+Mon Mar 16 22:51:14 2026
+Global Step: 35000    Loss: 0.030814    LR: 0.000100
+Mon Mar 16 22:52:29 2026
+Global Step: 35500    Loss: 0.030316    LR: 0.000100
+Mon Mar 16 22:53:39 2026
+Global Step: 36000    Loss: 0.030475    LR: 0.000100
+Mon Mar 16 22:54:48 2026
+Global Step: 36500    Loss: 0.029883    LR: 0.000100
+Mon Mar 16 22:55:56 2026
+Global Step: 37000    Loss: 0.030312    LR: 0.000100
+Mon Mar 16 22:57:05 2026
+Global Step: 37500    Loss: 0.030408    LR: 0.000100
+Mon Mar 16 22:58:13 2026
+Global Step: 38000    Loss: 0.030407    LR: 0.000100
+Mon Mar 16 22:59:22 2026
+Global Step: 38500    Loss: 0.030539    LR: 0.000100
+Mon Mar 16 23:00:31 2026
+Global Step: 39000    Loss: 0.030335    LR: 0.000100
+Mon Mar 16 23:01:39 2026
+Global Step: 39500    Loss: 0.030354    LR: 0.000100
+Mon Mar 16 23:02:48 2026
+Global Step: 40000    Loss: 0.030220    LR: 0.000100
+Mon Mar 16 23:04:01 2026
+Global Step: 40500    Loss: 0.029996    LR: 0.000100
+Mon Mar 16 23:05:10 2026
+Global Step: 41000    Loss: 0.030103    LR: 0.000100
+Mon Mar 16 23:06:18 2026
+Global Step: 41500    Loss: 0.029989    LR: 0.000100
+Mon Mar 16 23:07:27 2026
+Global Step: 42000    Loss: 0.030369    LR: 0.000100
+Mon Mar 16 23:08:36 2026
+Global Step: 42500    Loss: 0.029944    LR: 0.000100
+Mon Mar 16 23:09:45 2026
+Global Step: 43000    Loss: 0.030512    LR: 0.000100
+Mon Mar 16 23:10:54 2026
+Global Step: 43500    Loss: 0.030258    LR: 0.000100
+Mon Mar 16 23:12:03 2026
+Global Step: 44000    Loss: 0.030232    LR: 0.000100
+Mon Mar 16 23:13:12 2026
+Global Step: 44500    Loss: 0.030123    LR: 0.000100
+Mon Mar 16 23:14:20 2026
+Global Step: 45000    Loss: 0.030406    LR: 0.000100
+Mon Mar 16 23:15:33 2026
+Global Step: 45500    Loss: 0.030691    LR: 0.000100
+Mon Mar 16 23:16:42 2026
+Global Step: 46000    Loss: 0.030334    LR: 0.000100
+Mon Mar 16 23:17:50 2026
+Global Step: 46500    Loss: 0.030139    LR: 0.000100
+Mon Mar 16 23:18:59 2026
+Global Step: 47000    Loss: 0.030272    LR: 0.000100
+Mon Mar 16 23:20:08 2026
+Global Step: 47500    Loss: 0.030338    LR: 0.000100
+Mon Mar 16 23:21:16 2026
+Global Step: 48000    Loss: 0.030355    LR: 0.000100
+Mon Mar 16 23:22:26 2026
+Global Step: 48500    Loss: 0.030459    LR: 0.000100
+Mon Mar 16 23:23:34 2026
+Global Step: 49000    Loss: 0.029752    LR: 0.000100
+Mon Mar 16 23:24:44 2026
+Global Step: 49500    Loss: 0.029851    LR: 0.000100
+Mon Mar 16 23:25:53 2026
+Global Step: 50000    Loss: 0.029951    LR: 0.000100
+Mon Mar 16 23:27:05 2026
+Global Step: 50500    Loss: 0.030059    LR: 0.000100
+Mon Mar 16 23:28:14 2026
+Global Step: 51000    Loss: 0.030570    LR: 0.000100
+Mon Mar 16 23:29:23 2026
+Global Step: 51500    Loss: 0.029958    LR: 0.000100
+Mon Mar 16 23:30:31 2026
+Global Step: 52000    Loss: 0.029700    LR: 0.000100
+Mon Mar 16 23:31:39 2026
+Global Step: 52500    Loss: 0.030435    LR: 0.000100
+Mon Mar 16 23:32:48 2026
+Global Step: 53000    Loss: 0.030515    LR: 0.000100
+Mon Mar 16 23:33:57 2026
+Global Step: 53500    Loss: 0.029782    LR: 0.000100
+Mon Mar 16 23:35:06 2026
+Global Step: 54000    Loss: 0.030367    LR: 0.000100
+Mon Mar 16 23:36:15 2026
+Global Step: 54500    Loss: 0.029799    LR: 0.000100
+Mon Mar 16 23:37:24 2026
+Global Step: 55000    Loss: 0.030225    LR: 0.000100
+Mon Mar 16 23:38:37 2026
+Global Step: 55500    Loss: 0.030074    LR: 0.000100
+Mon Mar 16 23:39:46 2026
+Global Step: 56000    Loss: 0.030479    LR: 0.000100
+Mon Mar 16 23:40:55 2026
+Global Step: 56500    Loss: 0.029990    LR: 0.000100
+Mon Mar 16 23:42:04 2026
+Global Step: 57000    Loss: 0.029966    LR: 0.000100
+Mon Mar 16 23:43:12 2026
+Global Step: 57500    Loss: 0.030445    LR: 0.000100
+Mon Mar 16 23:44:22 2026
+Global Step: 58000    Loss: 0.030034    LR: 0.000100
+Mon Mar 16 23:45:31 2026
+Global Step: 58500    Loss: 0.029939    LR: 0.000100
+Mon Mar 16 23:46:39 2026
+Global Step: 59000    Loss: 0.029927    LR: 0.000100
+Mon Mar 16 23:47:48 2026
+Global Step: 59500    Loss: 0.029877    LR: 0.000100
+Mon Mar 16 23:48:58 2026
+Global Step: 60000    Loss: 0.030276    LR: 0.000100
+Mon Mar 16 23:50:10 2026
+Global Step: 60500    Loss: 0.030256    LR: 0.000100
+Mon Mar 16 23:51:20 2026
+Global Step: 61000    Loss: 0.030237    LR: 0.000100
+Mon Mar 16 23:52:28 2026
+Global Step: 61500    Loss: 0.029983    LR: 0.000100
+Mon Mar 16 23:53:37 2026
+Global Step: 62000    Loss: 0.029832    LR: 0.000100
+Mon Mar 16 23:54:47 2026
+Global Step: 62500    Loss: 0.030003    LR: 0.000100
+Mon Mar 16 23:55:55 2026
+Global Step: 63000    Loss: 0.030341    LR: 0.000100
+Mon Mar 16 23:57:05 2026
+Global Step: 63500    Loss: 0.029817    LR: 0.000100
+Mon Mar 16 23:58:14 2026
+Global Step: 64000    Loss: 0.030062    LR: 0.000100
+Mon Mar 16 23:59:22 2026
+Global Step: 64500    Loss: 0.029697    LR: 0.000100
+Tue Mar 17 00:00:32 2026
+Global Step: 65000    Loss: 0.030236    LR: 0.000100
+Tue Mar 17 00:01:44 2026
+Global Step: 65500    Loss: 0.029703    LR: 0.000100
+Tue Mar 17 00:02:53 2026
+Global Step: 66000    Loss: 0.030196    LR: 0.000100
+Tue Mar 17 00:04:01 2026
+Global Step: 66500    Loss: 0.029513    LR: 0.000100
+Tue Mar 17 00:05:11 2026
+Global Step: 67000    Loss: 0.029210    LR: 0.000100
+Tue Mar 17 00:06:19 2026
+Global Step: 67500    Loss: 0.029754    LR: 0.000100
+Tue Mar 17 00:07:29 2026
+Global Step: 68000    Loss: 0.029959    LR: 0.000100
+Tue Mar 17 00:08:38 2026
+Global Step: 68500    Loss: 0.030155    LR: 0.000100
+Tue Mar 17 00:09:46 2026
+Global Step: 69000    Loss: 0.030445    LR: 0.000100
+Tue Mar 17 00:10:55 2026
+Global Step: 69500    Loss: 0.029750    LR: 0.000100
+Tue Mar 17 00:12:04 2026
+Global Step: 70000    Loss: 0.029754    LR: 0.000100
+Tue Mar 17 00:13:17 2026
+Global Step: 70500    Loss: 0.029862    LR: 0.000100
+Tue Mar 17 00:14:26 2026
+Global Step: 71000    Loss: 0.030472    LR: 0.000100
+Tue Mar 17 00:15:35 2026
+Global Step: 71500    Loss: 0.029786    LR: 0.000100
+Tue Mar 17 00:16:44 2026
+Global Step: 72000    Loss: 0.030036    LR: 0.000100
+Tue Mar 17 00:17:53 2026
+Global Step: 72500    Loss: 0.030276    LR: 0.000100
+Tue Mar 17 00:19:01 2026
+Global Step: 73000    Loss: 0.029291    LR: 0.000100
+Tue Mar 17 00:20:11 2026
+Global Step: 73500    Loss: 0.030145    LR: 0.000100
+Tue Mar 17 00:21:19 2026
+Global Step: 74000    Loss: 0.030090    LR: 0.000100
+Tue Mar 17 00:22:28 2026
+Global Step: 74500    Loss: 0.029531    LR: 0.000100
+Tue Mar 17 00:23:37 2026
+Global Step: 75000    Loss: 0.029712    LR: 0.000100
+Tue Mar 17 00:24:50 2026
+Global Step: 75500    Loss: 0.029884    LR: 0.000100
+Tue Mar 17 00:25:59 2026
+Global Step: 76000    Loss: 0.030274    LR: 0.000100
+Tue Mar 17 00:27:07 2026
+Global Step: 76500    Loss: 0.030328    LR: 0.000100
+Tue Mar 17 00:28:17 2026
+Global Step: 77000    Loss: 0.029374    LR: 0.000100
+Tue Mar 17 00:29:26 2026
+Global Step: 77500    Loss: 0.030177    LR: 0.000100
+Tue Mar 17 00:30:34 2026
+Global Step: 78000    Loss: 0.029773    LR: 0.000100
+Tue Mar 17 00:31:44 2026
+Global Step: 78500    Loss: 0.029899    LR: 0.000100
+Tue Mar 17 00:32:52 2026
+Global Step: 79000    Loss: 0.030125    LR: 0.000100
+Tue Mar 17 00:34:01 2026
+Global Step: 79500    Loss: 0.029590    LR: 0.000100
+Tue Mar 17 00:35:09 2026
+Global Step: 80000    Loss: 0.030008    LR: 0.000100
+Tue Mar 17 00:36:21 2026
+Global Step: 80500    Loss: 0.029399    LR: 0.000100
+Tue Mar 17 00:37:30 2026
+Global Step: 81000    Loss: 0.029880    LR: 0.000100
+Tue Mar 17 00:38:39 2026
+Global Step: 81500    Loss: 0.029854    LR: 0.000100
+Tue Mar 17 00:39:48 2026
+Global Step: 82000    Loss: 0.029692    LR: 0.000100
+Tue Mar 17 00:40:57 2026
+Global Step: 82500    Loss: 0.029994    LR: 0.000100
+Tue Mar 17 00:42:06 2026
+Global Step: 83000    Loss: 0.029963    LR: 0.000100
+Tue Mar 17 00:43:15 2026
+Global Step: 83500    Loss: 0.029381    LR: 0.000100
+Tue Mar 17 00:44:23 2026
+Global Step: 84000    Loss: 0.029588    LR: 0.000100
+Tue Mar 17 00:45:33 2026
+Global Step: 84500    Loss: 0.030008    LR: 0.000100
+Tue Mar 17 00:46:42 2026
+Global Step: 85000    Loss: 0.029846    LR: 0.000100
+Tue Mar 17 00:47:54 2026
+Global Step: 85500    Loss: 0.029878    LR: 0.000100
+Tue Mar 17 00:49:03 2026
+Global Step: 86000    Loss: 0.029364    LR: 0.000100
+Tue Mar 17 00:50:12 2026
+Global Step: 86500    Loss: 0.030143    LR: 0.000100
+Tue Mar 17 00:51:20 2026
+Global Step: 87000    Loss: 0.030470    LR: 0.000100
+Tue Mar 17 00:52:29 2026
+Global Step: 87500    Loss: 0.029836    LR: 0.000100
+Tue Mar 17 00:53:37 2026
+Global Step: 88000    Loss: 0.030236    LR: 0.000100
+Tue Mar 17 00:54:45 2026
+Global Step: 88500    Loss: 0.029691    LR: 0.000100
+Tue Mar 17 00:55:54 2026
+Global Step: 89000    Loss: 0.029961    LR: 0.000100
+Tue Mar 17 00:57:02 2026
+Global Step: 89500    Loss: 0.029896    LR: 0.000100
+Tue Mar 17 00:58:11 2026
+Global Step: 90000    Loss: 0.029919    LR: 0.000100
+Tue Mar 17 00:59:24 2026
+Global Step: 90500    Loss: 0.029575    LR: 0.000100
+Tue Mar 17 01:00:33 2026
+Global Step: 91000    Loss: 0.029624    LR: 0.000100
+Tue Mar 17 01:01:42 2026
+Global Step: 91500    Loss: 0.029833    LR: 0.000100
+Tue Mar 17 01:02:51 2026
+Global Step: 92000    Loss: 0.029992    LR: 0.000100
+Tue Mar 17 01:04:01 2026
+Global Step: 92500    Loss: 0.030259    LR: 0.000100
+Tue Mar 17 01:05:09 2026
+Global Step: 93000    Loss: 0.029506    LR: 0.000100
+Tue Mar 17 01:06:18 2026
+Global Step: 93500    Loss: 0.030134    LR: 0.000100
+Tue Mar 17 01:07:27 2026
+Global Step: 94000    Loss: 0.029592    LR: 0.000100
+Tue Mar 17 01:08:35 2026
+Global Step: 94500    Loss: 0.029659    LR: 0.000100
+Tue Mar 17 01:09:43 2026
+Global Step: 95000    Loss: 0.029785    LR: 0.000100
+Tue Mar 17 01:10:56 2026
+Global Step: 95500    Loss: 0.029876    LR: 0.000100
+Tue Mar 17 01:12:05 2026
+Global Step: 96000    Loss: 0.029923    LR: 0.000100
+Tue Mar 17 01:13:14 2026
+Global Step: 96500    Loss: 0.030407    LR: 0.000100
+Tue Mar 17 01:14:22 2026
+Global Step: 97000    Loss: 0.029595    LR: 0.000100
+Tue Mar 17 01:15:31 2026
+Global Step: 97500    Loss: 0.029989    LR: 0.000100
+Tue Mar 17 01:16:40 2026
+Global Step: 98000    Loss: 0.029821    LR: 0.000100
+Tue Mar 17 01:17:49 2026
+Global Step: 98500    Loss: 0.029877    LR: 0.000100
+Tue Mar 17 01:18:58 2026
+Global Step: 99000    Loss: 0.030071    LR: 0.000100
+Tue Mar 17 01:20:06 2026
+Global Step: 99500    Loss: 0.029392    LR: 0.000100
+Tue Mar 17 01:21:15 2026
+Global Step: 100000    Loss: 0.029596    LR: 0.000100
